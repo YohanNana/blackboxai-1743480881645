@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | About Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/dashboard.html" class="auth-link">Dashboard</a>
+                <a href="/profile.html" class="auth-link">Profile</a>
+                <button onclick="logout()" class="auth-link">Logout</button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <!-- Hero Section -->
+            <div class="bg-blue-600 rounded-lg p-8 mb-8 text-white">
+                <h1 class="text-3xl font-bold mb-4">About V-Maint</h1>
+                <p class="text-lg">
+                    The smarter way to track and manage your vehicle maintenance
+                </p>
+            </div>
+
+            <!-- Our Story -->
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-4">Our Story</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <p class="mb-4">
+                            Founded in 2023, V-Maint was created by car enthusiasts who were frustrated with the complexity of tracking vehicle maintenance. We wanted a simple, intuitive solution that would help people take better care of their vehicles.
+                        </p>
+                        <p>
+                            Today, V-Maint helps thousands of vehicle owners stay on top of maintenance, reduce repair costs, and extend the life of their cars, trucks, and motorcycles.
+                        </p>
+                    </div>
+                    <div class="bg-gray-200 h-64 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-car text-6xl text-gray-500"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-6">Key Features</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Feature 1 -->
+                    <div class="border rounded-lg p-6 hover:shadow-lg transition duration-200">
+                        <div class="bg-blue-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-bell text-blue-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Maintenance Reminders</h3>
+                        <p class="text-gray-600">
+                            Never miss an oil change or service interval with our smart reminder system.
+                        </p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="border rounded-lg p-6 hover:shadow-lg transition duration-200">
+                        <div class="bg-green-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">Advanced Analytics</h3>
+                        <p class="text-gray-600">
+                            Track maintenance costs and patterns with our detailed analytics dashboard.
+                        </p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="border rounded-lg p-6 hover:shadow-lg transition duration-200">
+                        <div class="bg-purple-100 p-3 rounded-full w-12 h-12 flex items-center justify-center mb-4">
+                            <i class="fas fa-robot text-purple-600 text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-lg mb-2">AI Predictions</h3>
+                        <p class="text-gray-600">
+                            Our AI predicts when you'll need service based on your driving patterns.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team -->
+            <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-6">Meet The Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Team Member 1 -->
+                    <div class="text-center">
+                        <div class="bg-gray-200 h-40 w-40 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-5xl text-gray-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Alex Johnson</h3>
+                        <p class="text-gray-600 mb-2">Founder & CEO</p>
+                        <p class="text-sm text-gray-500">
+                            Automotive engineer with 15 years of experience
+                        </p>
+                    </div>
+                    <!-- Team Member 2 -->
+                    <div class="text-center">
+                        <div class="bg-gray-200 h-40 w-40 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-5xl text-gray-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Sarah Chen</h3>
+                        <p class="text-gray-600 mb-2">Lead Developer</p>
+                        <p class="text-sm text-gray-500">
+                            Full-stack developer and car enthusiast
+                        </p>
+                    </div>
+                    <!-- Team Member 3 -->
+                    <div class="text-center">
+                        <div class="bg-gray-200 h-40 w-40 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <i class="fas fa-user text-5xl text-gray-500"></i>
+                        </div>
+                        <h3 class="font-bold text-lg">Michael Rodriguez</h3>
+                        <p class="text-gray-600 mb-2">Product Designer</p>
+                        <p class="text-sm text-gray-500">
+                            UX specialist focused on intuitive interfaces
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="bg-blue-50 rounded-lg p-8 text-center">
+                <h2 class="text-2xl font-bold mb-4">Ready to take control of your vehicle maintenance?</h2>
+                <a href="/dashboard.html" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">
+                    Get Started Now
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple auth check
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '/login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login.html';
+        }
+    </script>
+</body>
+</html>
