@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | Maintenance Predictions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/dashboard.html" class="auth-link">Dashboard</a>
+                <a href="/profile.html" class="auth-link">Profile</a>
+                <button onclick="logout()" class="auth-link">Logout</button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content with Sidebar -->
+    <div class="flex">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="w-64 bg-gray-800 text-white p-4 hidden md:block">
+            <div class="space-y-4">
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/dashboard.html" class="flex items-center">
+                        <i class="fas fa-tachometer-alt mr-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/prediction-page.html" class="flex items-center">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        <span>Predictions</span>
+                    </a>
+                </div>
+                <!-- Other sidebar items... -->
+            </div>
+        </aside>
+
+        <!-- Prediction Content -->
+        <main class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Maintenance Predictions</h1>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600">Last updated: Today, 10:42 AM</span>
+                    <button onclick="refreshPredictions()" class="bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+                        <i class="fas fa-sync-alt mr-1"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vehicle Selector -->
+            <div class="bg-white p-4 rounded-lg shadow mb-6">
+                <label class="block text-gray-700 mb-2">Select Vehicle</label>
+                <select id="vehicleSelect" class="w-full md:w-1/3 px-3 py-2 border rounded-lg" onchange="updatePredictions()">
+                    <option value="all">All Vehicles</option>
+                    <option value="1">Toyota Camry (ABC-1234)</option>
+                    <option value="2">Honda Civic (XYZ-5678)</option>
+                </select>
+            </div>
+
+            <!-- Prediction Overview -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-gray-500">Predicted Issues This Month</h3>
+                    <p class="text-3xl font-bold text-blue-600">2</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-gray-500">Average Prediction Confidence</h3>
+                    <p class="text-3xl font-bold text-green-600">87%</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <h3 class="text-gray-500">Potential Cost Estimate</h3>
+                    <p class="text-3xl font-bold text-purple-600">$240-320</p>
+                </div>
+            </div>
+
+            <!-- Prediction Cards -->
+            <div class="space-y-4 mb-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-lg">Oil Change Needed Soon</h3>
+                            <p class="text-gray-600">Toyota Camry (ABC-1234)</p>
+                            <div class="flex items-center mt-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-2">
+                                    <i class="fas fa-bolt mr-1"></i> High Priority
+                                </span>
+                                <span class="text-sm text-gray-500">89% prediction confidence</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">
+                                Due in 500-800 km
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-sm"><strong>Prediction Basis:</strong> Based on your driving patterns (avg. 50 km/day) and last oil change at 42,500 km, our AI predicts you'll need an oil change soon.</p>
+                        <p class="text-sm mt-2"><strong>Recommended Action:</strong> Schedule an oil change within the next 2 weeks to maintain optimal engine performance.</p>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">Estimated Cost: $80-120</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">
+                                <i class="fas fa-calendar-plus mr-1"></i> Schedule
+                            </button>
+                            <button class="bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+                                <i class="fas fa-info-circle mr-1"></i> Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-semibold text-lg">Brake Pad Wear Detected</h3>
+                            <p class="text-gray-600">Honda Civic (XYZ-5678)</p>
+                            <div class="flex items-center mt-2">
+                                <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs mr-2">
+                                    <i class="fas fa-exclamation-triangle mr-1"></i> Medium Priority
+                                </span>
+                                <span class="text-sm text-gray-500">76% prediction confidence</span>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">
+                                Due in 1,200-1,500 km
+                            </span>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-sm"><strong>Prediction Basis:</strong> Analysis of your braking patterns and mileage since last brake service suggests pad wear.</p>
+                        <p class="text-sm mt-2"><strong>Recommended Action:</strong> Have your brakes inspected at your next service interval.</p>
+                    </div>
+                    <div class="mt-4 flex justify-between items-center">
+                        <div>
+                            <p class="text-sm text-gray-500">Estimated Cost: $160-200</p>
+                        </div>
+                        <div class="space-x-2">
+                            <button class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700">
+                                <i class="fas fa-calendar-plus mr-1"></i> Schedule
+                            </button>
+                            <button class="bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+                                <i class="fas fa-info-circle mr-1"></i> Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prediction Analytics -->
+            <div class="bg-white p-4 rounded-lg shadow mb-6">
+                <h2 class="text-xl font-bold mb-4">Maintenance Prediction Trends</h2>
+                <div class="h-64">
+                    <canvas id="predictionChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Spare Parts Recommendations -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-bold">Recommended Spare Parts</h2>
+                    <a href="/spare-parts.html" class="text-blue-500 hover:underline text-sm">
+                        View All Recommendations <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="border rounded p-3">
+                        <div class="flex items-start">
+                            <div class="bg-gray-200 w-16 h-16 rounded flex items-center justify-center mr-3">
+                                <i class="fas fa-oil-can text-2xl text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Synthetic Oil 5W-30</h3>
+                                <p class="text-sm text-gray-600">For Toyota Camry</p>
+                                <p class="text-sm mt-1"><span class="font-semibold">$42.99</span> <span class="text-green-600">(In Stock)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded p-3">
+                        <div class="flex items-start">
+                            <div class="bg-gray-200 w-16 h-16 rounded flex items-center justify-center mr-3">
+                                <i class="fas fa-tools text-2xl text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Oil Filter</h3>
+                                <p class="text-sm text-gray-600">Toyota OEM Part</p>
+                                <p class="text-sm mt-1"><span class="font-semibold">$12.99</span> <span class="text-green-600">(In Stock)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded p-3">
+                        <div class="flex items-start">
+                            <div class="bg-gray-200 w-16 h-16 rounded flex items-center justify-center mr-3">
+                                <i class="fas fa-car-crash text-2xl text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Brake Pads Set</h3>
+                                <p class="text-sm text-gray-600">For Honda Civic</p>
+                                <p class="text-sm mt-1"><span class="font-semibold">$64.99</span> <span class="text-yellow-600">(Low Stock)</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple auth check
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '/login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login.html';
+        }
+
+        function refreshPredictions() {
+            // In a real app, this would refresh prediction data
+            alert('Predictions refreshed!');
+        }
+
+        function updatePredictions() {
+            const selectedVehicle = document.getElementById('vehicleSelect').value;
+            // In a real app, this would filter predictions
+            console.log('Showing predictions for vehicle:', selectedVehicle);
+        }
+
+        // Initialize chart
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('predictionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+                    datasets: [{
+                        label: 'Maintenance Predictions',
+                        data: [65, 59, 80, 81, 56, 55, 40],
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Prediction Confidence (%)'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
