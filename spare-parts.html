@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | Spare Parts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/dashboard.html" class="auth-link">Dashboard</a>
+                <a href="/profile.html" class="auth-link">Profile</a>
+                <button onclick="logout()" class="auth-link">Logout</button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content with Sidebar -->
+    <div class="flex">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="w-64 bg-gray-800 text-white p-4 hidden md:block">
+            <div class="space-y-4">
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/dashboard.html" class="flex items-center">
+                        <i class="fas fa-tachometer-alt mr-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/spare-parts.html" class="flex items-center">
+                        <i class="fas fa-cog mr-2"></i>
+                        <span>Spare Parts</span>
+                    </a>
+                </div>
+                <!-- Other sidebar items... -->
+            </div>
+        </aside>
+
+        <!-- Spare Parts Content -->
+        <main class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Recommended Spare Parts</h1>
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm text-gray-600">Last updated: Today, 11:15 AM</span>
+                    <button onclick="refreshRecommendations()" class="bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+                        <i class="fas fa-sync-alt mr-1"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Vehicle Selector -->
+            <div class="bg-white p-4 rounded-lg shadow mb-6">
+                <label class="block text-gray-700 mb-2">Select Vehicle</label>
+                <select id="vehicleSelect" class="w-full md:w-1/3 px-3 py-2 border rounded-lg" onchange="updateRecommendations()">
+                    <option value="all">All Vehicles</option>
+                    <option value="1" selected>Toyota Camry (ABC-1234)</option>
+                    <option value="2">Honda Civic (XYZ-5678)</option>
+                </select>
+            </div>
+
+            <!-- Recommended Parts -->
+            <div class="space-y-4 mb-6">
+                <!-- Part 1 -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex flex-col md:flex-row md:items-start">
+                        <!-- Part Image -->
+                        <div class="md:w-1/4 mb-4 md:mb-0 md:mr-4">
+                            <div class="bg-gray-200 h-40 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-oil-can text-5xl text-gray-600"></i>
+                            </div>
+                        </div>
+                        <!-- Part Details -->
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-lg">Synthetic Oil 5W-30 (5 Quart)</h3>
+                                    <p class="text-gray-600">For Toyota Camry 2020</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-2">
+                                            <i class="fas fa-bolt mr-1"></i> High Priority
+                                        </span>
+                                        <span class="text-sm text-gray-500">Based on upcoming oil change</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
+                                        In Stock
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-sm"><strong>Compatibility:</strong> Compatible with your vehicle based on manufacturer specifications.</p>
+                                <p class="text-sm mt-2"><strong>Recommended By:</strong> 92% of Toyota Camry owners use this oil type.</p>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div>
+                                    <p class="text-xl font-bold">$42.99</p>
+                                    <p class="text-sm text-gray-500">$8.60 per quart</p>
+                                </div>
+                                <div class="space-x-2">
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                        <i class="fas fa-shopping-cart mr-1"></i> Add to Cart
+                                    </button>
+                                    <button class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                                        <i class="fas fa-info-circle mr-1"></i> Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2 -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex flex-col md:flex-row md:items-start">
+                        <!-- Part Image -->
+                        <div class="md:w-1/4 mb-4 md:mb-0 md:mr-4">
+                            <div class="bg-gray-200 h-40 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-filter text-5xl text-gray-600"></i>
+                            </div>
+                        </div>
+                        <!-- Part Details -->
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-lg">Oil Filter - Toyota OEM</h3>
+                                    <p class="text-gray-600">For Toyota Camry 2020</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs mr-2">
+                                            <i class="fas fa-bolt mr-1"></i> High Priority
+                                        </span>
+                                        <span class="text-sm text-gray-500">Replacement recommended with oil change</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">
+                                        In Stock
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-sm"><strong>Compatibility:</strong> Direct OEM replacement part for your vehicle.</p>
+                                <p class="text-sm mt-2"><strong>Recommended By:</strong> Last changed 5,000 km ago (recommended interval: 8,000 km)</p>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div>
+                                    <p class="text-xl font-bold">$12.99</p>
+                                    <p class="text-sm text-gray-500">Free shipping on orders over $50</p>
+                                </div>
+                                <div class="space-x-2">
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                        <i class="fas fa-shopping-cart mr-1"></i> Add to Cart
+                                    </button>
+                                    <button class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                                        <i class="fas fa-info-circle mr-1"></i> Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 3 -->
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <div class="flex flex-col md:flex-row md:items-start">
+                        <!-- Part Image -->
+                        <div class="md:w-1/4 mb-4 md:mb-0 md:mr-4">
+                            <div class="bg-gray-200 h-40 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-car-crash text-5xl text-gray-600"></i>
+                            </div>
+                        </div>
+                        <!-- Part Details -->
+                        <div class="md:w-3/4">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-semibold text-lg">Brake Pads Set (Front)</h3>
+                                    <p class="text-gray-600">For Honda Civic 2018</p>
+                                    <div class="flex items-center mt-2">
+                                        <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded text-xs mr-2">
+                                            <i class="fas fa-exclamation-triangle mr-1"></i> Medium Priority
+                                        </span>
+                                        <span class="text-sm text-gray-500">Based on predicted wear</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">
+                                        Low Stock
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <p class="text-sm"><strong>Compatibility:</strong> Premium ceramic brake pads for your vehicle model.</p>
+                                <p class="text-sm mt-2"><strong>Recommended By:</strong> Our AI predicts you'll need these within 1,200-1,500 km.</p>
+                            </div>
+                            <div class="mt-4 flex justify-between items-center">
+                                <div>
+                                    <p class="text-xl font-bold">$64.99</p>
+                                    <p class="text-sm text-gray-500">Includes all hardware</p>
+                                </div>
+                                <div class="space-x-2">
+                                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                                        <i class="fas fa-shopping-cart mr-1"></i> Add to Cart
+                                    </button>
+                                    <button class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                                        <i class="fas fa-info-circle mr-1"></i> Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recently Purchased -->
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h2 class="text-xl font-bold mb-4">Your Recently Purchased Parts</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="border rounded p-3">
+                        <div class="flex items-start">
+                            <div class="bg-gray-200 w-16 h-16 rounded flex items-center justify-center mr-3">
+                                <i class="fas fa-wind text-2xl text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Cabin Air Filter</h3>
+                                <p class="text-sm text-gray-600">Purchased 2 months ago</p>
+                                <p class="text-sm mt-1"><span class="font-semibold">$18.99</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded p-3">
+                        <div class="flex items-start">
+                            <div class="bg-gray-200 w-16 h-16 rounded flex items-center justify-center mr-3">
+                                <i class="fas fa-fan text-2xl text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Engine Air Filter</h3>
+                                <p class="text-sm text-gray-600">Purchased 3 months ago</p>
+                                <p class="text-sm mt-1"><span class="font-semibold">$22.49</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border rounded p-3">
+                        <div class="flex items-start">
+                            <div class="bg-gray-200 w-16 h-16 rounded flex items-center justify-center mr-3">
+                                <i class="fas fa-tint text-2xl text-gray-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">Windshield Washer Fluid</h3>
+                                <p class="text-sm text-gray-600">Purchased 1 month ago</p>
+                                <p class="text-sm mt-1"><span class="font-semibold">$5.99</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple auth check
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '/login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login.html';
+        }
+
+        function refreshRecommendations() {
+            // In a real app, this would refresh recommendations
+            alert('Recommendations refreshed!');
+        }
+
+        function updateRecommendations() {
+            const selectedVehicle = document.getElementById('vehicleSelect').value;
+            // In a real app, this would filter recommendations
+            console.log('Showing recommendations for vehicle:', selectedVehicle);
+        }
+    </script>
+</body>
+</html>
