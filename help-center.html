@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | Help Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/dashboard.html" class="auth-link">Dashboard</a>
+                <a href="/profile.html" class="auth-link">Profile</a>
+                <button onclick="logout()" class="auth-link">Logout</button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-6xl mx-auto">
+            <!-- Hero Section -->
+            <div class="bg-blue-600 rounded-lg p-8 mb-8 text-white">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl font-bold mb-4">How can we help you today?</h1>
+                    <div class="relative">
+                        <input type="text" placeholder="Search help articles..." 
+                            class="w-full px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                        <button class="absolute right-2 top-2 text-gray-500">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Help Categories -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <!-- Getting Started -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-blue-100 p-2 rounded-lg mr-4">
+                            <i class="fas fa-rocket text-blue-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold">Getting Started</h2>
+                    </div>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Creating your first vehicle profile</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Adding maintenance records</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Setting up notifications</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Understanding the dashboard</a></li>
+                    </ul>
+                    <a href="#" class="inline-block mt-4 text-blue-600 font-medium hover:underline">
+                        View all articles <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Maintenance Tracking -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 p-2 rounded-lg mr-4">
+                            <i class="fas fa-tools text-green-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold">Maintenance Tracking</h2>
+                    </div>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Logging service history</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Setting maintenance reminders</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Using the maintenance tracker</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Understanding service intervals</a></li>
+                    </ul>
+                    <a href="#" class="inline-block mt-4 text-blue-600 font-medium hover:underline">
+                        View all articles <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+
+                <!-- Account & Settings -->
+                <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 p-2 rounded-lg mr-4">
+                            <i class="fas fa-user-cog text-purple-600 text-xl"></i>
+                        </div>
+                        <h2 class="text-xl font-semibold">Account & Settings</h2>
+                    </div>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-blue-600 hover:underline">Updating your profile</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Changing password</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Notification preferences</a></li>
+                        <li><a href="#" class="text-blue-600 hover:underline">Managing vehicles</a></li>
+                    </ul>
+                    <a href="#" class="inline-block mt-4 text-blue-600 font-medium hover:underline">
+                        View all articles <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Popular Articles -->
+            <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                <h2 class="text-2xl font-bold mb-6">Popular Help Articles</h2>
+                <div class="space-y-4">
+                    <div class="border-b pb-4">
+                        <a href="#" class="text-lg font-medium text-blue-600 hover:underline">How to add a new vehicle to your account</a>
+                        <p class="text-gray-600 mt-1">Step-by-step guide to registering your vehicle in V-Maint</p>
+                    </div>
+                    <div class="border-b pb-4">
+                        <a href="#" class="text-lg font-medium text-blue-600 hover:underline">Setting up maintenance reminders</a>
+                        <p class="text-gray-600 mt-1">Learn how to configure automatic reminders for your vehicle services</p>
+                    </div>
+                    <div class="border-b pb-4">
+                        <a href="#" class="text-lg font-medium text-blue-600 hover:underline">Understanding maintenance predictions</a>
+                        <p class="text-gray-600 mt-1">How our AI predicts your upcoming maintenance needs</p>
+                    </div>
+                    <div class="border-b pb-4">
+                        <a href="#" class="text-lg font-medium text-blue-600 hover:underline">Exporting your maintenance history</a>
+                        <p class="text-gray-600 mt-1">How to download your complete service records</p>
+                    </div>
+                    <div>
+                        <a href="#" class="text-lg font-medium text-blue-600 hover:underline">Troubleshooting common issues</a>
+                        <p class="text-gray-600 mt-1">Solutions for frequently encountered problems</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Options -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold mb-6">Still need help?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border rounded-lg p-6 hover:shadow-md transition duration-200">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-blue-600"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Email Support</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Send us an email and we'll get back to you within 24 hours.</p>
+                        <a href="/contact.html" class="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            Contact Us
+                        </a>
+                    </div>
+                    <div class="border rounded-lg p-6 hover:shadow-md transition duration-200">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-100 p-3 rounded-full mr-4">
+                                <i class="fas fa-comments text-green-600"></i>
+                            </div>
+                            <h3 class="text-xl font-semibold">Live Chat</h3>
+                        </div>
+                        <p class="text-gray-600 mb-4">Chat with our support team in real-time during business hours.</p>
+                        <button onclick="startLiveChat()" class="inline-block bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                            Start Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple auth check
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '/login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login.html';
+        }
+
+        function startLiveChat() {
+            // In a real app, this would initiate live chat
+            alert('Live chat would be initiated here. For now, please use the contact form.');
+        }
+    </script>
+</body>
+</html>
