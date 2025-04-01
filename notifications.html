@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | Notifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/dashboard.html" class="auth-link">Dashboard</a>
+                <a href="/profile.html" class="auth-link">Profile</a>
+                <button onclick="logout()" class="auth-link">Logout</button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content with Sidebar -->
+    <div class="flex">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="w-64 bg-gray-800 text-white p-4 hidden md:block">
+            <div class="space-y-4">
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/dashboard.html" class="flex items-center">
+                        <i class="fas fa-tachometer-alt mr-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/notifications.html" class="flex items-center">
+                        <i class="fas fa-bell mr-2"></i>
+                        <span>Notifications</span>
+                    </a>
+                </div>
+                <!-- Other sidebar items... -->
+            </div>
+        </aside>
+
+        <!-- Notifications Content -->
+        <main class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">Notifications</h1>
+                <div class="flex space-x-2">
+                    <button onclick="markAllAsRead()" class="bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+                        <i class="fas fa-check mr-1"></i> Mark all as read
+                    </button>
+                    <button onclick="clearAll()" class="bg-gray-200 px-3 py-1 rounded text-sm hover:bg-gray-300">
+                        <i class="fas fa-trash-alt mr-1"></i> Clear all
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notification Tabs -->
+            <div class="border-b border-gray-200 mb-6">
+                <nav class="-mb-px flex space-x-8">
+                    <a href="#" class="border-blue-500 text-blue-600 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                        All Notifications
+                    </a>
+                    <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                        Unread
+                    </a>
+                    <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                        Alerts
+                    </a>
+                    <a href="#" class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                        Reminders
+                    </a>
+                </nav>
+            </div>
+
+            <!-- Notifications List -->
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <!-- Today's Notifications -->
+                <div class="border-b">
+                    <div class="px-4 py-3 bg-gray-50">
+                        <h3 class="text-sm font-medium text-gray-500">Today</h3>
+                    </div>
+                    <ul class="divide-y divide-gray-200">
+                        <!-- Notification 1 -->
+                        <li class="px-4 py-3 hover:bg-gray-50">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                                    <i class="fas fa-oil-can text-blue-600"></i>
+                                </div>
+                                <div class="ml-3 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm font-medium text-gray-900">
+                                            Oil change due soon
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <span class="text-xs text-gray-500">2h ago</span>
+                                            <button class="text-gray-400 hover:text-gray-500">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-500">
+                                        Your Toyota Camry is due for an oil change in approximately 500 km.
+                                    </p>
+                                    <div class="mt-2 flex space-x-3">
+                                        <button class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded hover:bg-blue-100">
+                                            View vehicle
+                                        </button>
+                                        <button class="text-xs bg-gray-50 text-gray-600 px-2 py-1 rounded hover:bg-gray-100">
+                                            Snooze reminder
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Notification 2 -->
+                        <li class="px-4 py-3 hover:bg-gray-50">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mt-1">
+                                    <i class="fas fa-check-circle text-green-600"></i>
+                                </div>
+                                <div class="ml-3 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm font-medium text-gray-900">
+                                            Maintenance recorded
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <span class="text-xs text-gray-500">5h ago</span>
+                                            <button class="text-gray-400 hover:text-gray-500">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-500">
+                                        Your tire rotation for Honda Civic has been successfully logged.
+                                    </p>
+                                    <div class="mt-2">
+                                        <button class="text-xs bg-gray-50 text-gray-600 px-2 py-1 rounded hover:bg-gray-100">
+                                            View record
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Yesterday's Notifications -->
+                <div class="border-b">
+                    <div class="px-4 py-3 bg-gray-50">
+                        <h3 class="text-sm font-medium text-gray-500">Yesterday</h3>
+                    </div>
+                    <ul class="divide-y divide-gray-200">
+                        <!-- Notification 3 -->
+                        <li class="px-4 py-3 hover:bg-gray-50">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-yellow-100 flex items-center justify-center mt-1">
+                                    <i class="fas fa-exclamation-triangle text-yellow-600"></i>
+                                </div>
+                                <div class="ml-3 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm font-medium text-gray-900">
+                                            Brake service alert
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <span class="text-xs text-gray-500">1d ago</span>
+                                            <button class="text-gray-400 hover:text-gray-500">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-500">
+                                        Our AI predicts your Honda Civic will need brake service within 1,200 km.
+                                    </p>
+                                    <div class="mt-2 flex space-x-3">
+                                        <button class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded hover:bg-blue-100">
+                                            View prediction
+                                        </button>
+                                        <button class="text-xs bg-gray-50 text-gray-600 px-2 py-1 rounded hover:bg-gray-100">
+                                            Dismiss
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Older Notifications -->
+                <div>
+                    <div class="px-4 py-3 bg-gray-50">
+                        <h3 class="text-sm font-medium text-gray-500">Older</h3>
+                    </div>
+                    <ul class="divide-y divide-gray-200">
+                        <!-- Notification 4 -->
+                        <li class="px-4 py-3 hover:bg-gray-50">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center mt-1">
+                                    <i class="fas fa-bell text-purple-600"></i>
+                                </div>
+                                <div class="ml-3 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm font-medium text-gray-900">
+                                            Monthly maintenance report
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <span class="text-xs text-gray-500">3d ago</span>
+                                            <button class="text-gray-400 hover:text-gray-500">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-500">
+                                        Your monthly maintenance summary is ready to view.
+                                    </p>
+                                    <div class="mt-2">
+                                        <button class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded hover:bg-blue-100">
+                                            View report
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <!-- Notification 5 -->
+                        <li class="px-4 py-3 hover:bg-gray-50">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mt-1">
+                                    <i class="fas fa-info-circle text-blue-600"></i>
+                                </div>
+                                <div class="ml-3 flex-1">
+                                    <div class="flex items-center justify-between">
+                                        <p class="text-sm font-medium text-gray-900">
+                                            New feature available
+                                        </p>
+                                        <div class="flex space-x-2">
+                                            <span class="text-xs text-gray-500">1w ago</span>
+                                            <button class="text-gray-400 hover:text-gray-500">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p class="text-sm text-gray-500">
+                                        Try our new maintenance prediction feature for your vehicles.
+                                    </p>
+                                    <div class="mt-2">
+                                        <button class="text-xs bg-blue-50 text-blue-600 px-2 py-1 rounded hover:bg-blue-100">
+                                            Learn more
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="mt-8 bg-white rounded-lg shadow p-6">
+                <h2 class="text-lg font-semibold mb-4">Notification Settings</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-medium">Email Notifications</h3>
+                            <p class="text-sm text-gray-600">Receive important updates via email</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-medium">SMS Alerts</h3>
+                            <p class="text-sm text-gray-600">Get urgent reminders via text message</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer" checked>
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-medium">Push Notifications</h3>
+                            <p class="text-sm text-gray-600">Enable app notifications on your device</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" value="" class="sr-only peer">
+                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                        </label>
+                    </div>
+                    <div class="pt-4 border-t">
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                            Save Notification Settings
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple auth check
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '/login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login.html';
+        }
+
+        function markAllAsRead() {
+            // In a real app, this would mark all notifications as read
+            alert('All notifications marked as read');
+        }
+
+        function clearAll() {
+            // In a real app, this would clear all notifications
+            if (confirm('Are you sure you want to clear all notifications?')) {
+                alert('All notifications cleared');
+            }
+        }
+    </script>
+</body>
+</html>
