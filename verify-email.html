@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | Verify Email</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar (simplified) -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md text-center">
+            <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100 mb-4">
+                <i class="fas fa-envelope text-green-600 text-xl"></i>
+            </div>
+            
+            <h1 class="text-2xl font-bold text-gray-800 mb-2">Verify your email address</h1>
+            <p class="text-gray-600 mb-6">
+                We've sent a verification link to <span class="font-medium">user@example.com</span>.
+                Please check your inbox and click the link to verify your account.
+            </p>
+
+            <div class="bg-blue-50 p-4 rounded-lg mb-6 text-left">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-info-circle text-blue-500 mt-1"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-blue-700">
+                            Can't find the email? Check your spam folder or 
+                            <a href="#" class="font-medium text-blue-600 hover:text-blue-500" onclick="resendVerification()">
+                                click here to resend
+                            </a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center">
+                <button onclick="checkVerification()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-sync-alt mr-2"></i> I've verified my email
+                </button>
+            </div>
+
+            <div class="mt-6 text-sm text-gray-500">
+                <p>Having trouble? <a href="/contact.html" class="text-blue-600 hover:text-blue-500">Contact support</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function resendVerification() {
+            // In a real app, this would resend the verification email
+            alert('Verification email resent! Please check your inbox.');
+        }
+
+        function checkVerification() {
+            // In a real app, this would check with the backend if email is verified
+            // For demo purposes, we'll simulate successful verification
+            localStorage.setItem('authToken', 'mock-token-12345');
+            alert('Email successfully verified! Redirecting to dashboard...');
+            window.location.href = '/dashboard.html';
+        }
+    </script>
+</body>
+</html>
