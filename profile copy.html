@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | My Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/dashboard.html" class="auth-link">Dashboard</a>
+                <a href="/profile.html" class="auth-link">Profile</a>
+                <button onclick="logout()" class="auth-link">Logout</button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content with Sidebar -->
+    <div class="flex">
+        <!-- Sidebar (same as dashboard) -->
+        <aside class="w-64 bg-gray-800 text-white p-4 hidden md:block">
+            <div class="space-y-4">
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/dashboard.html" class="flex items-center">
+                        <i class="fas fa-tachometer-alt mr-2"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+                <div class="p-2 hover:bg-gray-700 rounded cursor-pointer">
+                    <a href="/profile.html" class="flex items-center">
+                        <i class="fas fa-user mr-2"></i>
+                        <span>Profile</span>
+                    </a>
+                </div>
+                <!-- Other sidebar items... -->
+            </div>
+        </aside>
+
+        <!-- Profile Content -->
+        <main class="flex-1 p-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold">My Profile</h1>
+                <button onclick="toggleEditMode()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-edit mr-1"></i> Edit Profile
+                </button>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow">
+                <!-- Profile Picture -->
+                <div class="flex flex-col items-center mb-6">
+                    <div class="w-32 h-32 rounded-full bg-gray-200 flex items-center justify-center mb-3">
+                        <i class="fas fa-user text-6xl text-gray-400"></i>
+                    </div>
+                    <button class="text-blue-500 hover:underline text-sm">
+                        <i class="fas fa-camera mr-1"></i> Change Photo
+                    </button>
+                </div>
+
+                <!-- Personal Information -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4">Personal Information</h2>
+                        <div class="mb-4">
+                            <label class="block text-gray-500 mb-1">First Name</label>
+                            <p class="view-mode">John</p>
+                            <input type="text" value="John" class="edit-mode w-full px-3 py-2 border rounded-lg hidden">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-500 mb-1">Last Name</label>
+                            <p class="view-mode">Doe</p>
+                            <input type="text" value="Doe" class="edit-mode w-full px-3 py-2 border rounded-lg hidden">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-500 mb-1">Email</label>
+                            <p class="view-mode">john.doe@example.com</p>
+                            <input type="email" value="john.doe@example.com" class="edit-mode w-full px-3 py-2 border rounded-lg hidden">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-500 mb-1">Phone</label>
+                            <p class="view-mode">(555) 123-4567</p>
+                            <input type="tel" value="(555) 123-4567" class="edit-mode w-full px-3 py-2 border rounded-lg hidden">
+                        </div>
+                    </div>
+
+                    <!-- Account Settings -->
+                    <div>
+                        <h2 class="text-lg font-semibold mb-4">Account Settings</h2>
+                        <div class="mb-4">
+                            <label class="block text-gray-500 mb-1">Account Type</label>
+                            <p>Premium Member</p>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-500 mb-1">Member Since</label>
+                            <p>15 Jan 2022</p>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-500 mb-1">Notification Preferences</label>
+                            <p class="view-mode">Email & SMS Alerts</p>
+                            <select class="edit-mode w-full px-3 py-2 border rounded-lg hidden">
+                                <option>Email Only</option>
+                                <option selected>SMS Only</option>
+                                <option>Email & SMS</option>
+                                <option>None</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <button class="text-red-500 hover:underline text-sm">
+                                <i class="fas fa-lock mr-1"></i> Change Password
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicles Section -->
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold">My Vehicles</h2>
+                        <a href="/vehicle-registration.html" class="text-blue-500 hover:underline text-sm">
+                            <i class="fas fa-plus mr-1"></i> Add Vehicle
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Vehicle 1 -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between">
+                                <div>
+                                    <h3 class="font-semibold">Toyota Camry</h3>
+                                    <p class="text-gray-600 text-sm">ABC-1234</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Primary</span>
+                            </div>
+                            <div class="mt-3 flex justify-between">
+                                <a href="/vehicle-details.html" class="text-blue-500 hover:underline text-sm">
+                                    <i class="fas fa-eye mr-1"></i> View Details
+                                </a>
+                                <button class="text-gray-500 hover:text-gray-700 text-sm">
+                                    <i class="fas fa-trash-alt mr-1"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Vehicle 2 -->
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <div class="flex justify-between">
+                                <div>
+                                    <h3 class="font-semibold">Honda Civic</h3>
+                                    <p class="text-gray-600 text-sm">XYZ-5678</p>
+                                </div>
+                                <span class="bg-gray-100 text-gray-800 px-2 py-1 rounded text-xs">Secondary</span>
+                            </div>
+                            <div class="mt-3 flex justify-between">
+                                <a href="/vehicle-details.html" class="text-blue-500 hover:underline text-sm">
+                                    <i class="fas fa-eye mr-1"></i> View Details
+                                </a>
+                                <button class="text-gray-500 hover:text-gray-700 text-sm">
+                                    <i class="fas fa-trash-alt mr-1"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edit Mode Buttons -->
+                <div class="edit-mode-buttons hidden mt-6 flex justify-end space-x-3">
+                    <button onclick="cancelEdit()" class="bg-gray-200 px-4 py-2 rounded-lg hover:bg-gray-300">
+                        Cancel
+                    </button>
+                    <button onclick="saveProfile()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Simple auth check
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '/login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login.html';
+        }
+
+        function toggleEditMode() {
+            const viewElements = document.querySelectorAll('.view-mode');
+            const editElements = document.querySelectorAll('.edit-mode');
+            const editButtons = document.querySelector('.edit-mode-buttons');
+
+            viewElements.forEach(el => el.classList.toggle('hidden'));
+            editElements.forEach(el => el.classList.toggle('hidden'));
+            editButtons.classList.toggle('hidden');
+        }
+
+        function cancelEdit() {
+            toggleEditMode();
+            // In a real app, we would reset form fields to their original values
+        }
+
+        function saveProfile() {
+            // In a real app, this would save to an API
+            alert('Profile changes saved successfully!');
+            toggleEditMode();
+        }
+    </script>
+</body>
+</html>
