@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-Maint | Contact Support</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Navbar -->
+    <nav class="bg-gray-900 p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold">V-Maint</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="/dashboard.html" class="auth-link">Dashboard</a>
+                <a href="/profile.html" class="auth-link">Profile</a>
+                <button onclick="logout()" class="auth-link">Logout</button>
+            </div>
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold text-gray-800 mb-2">Contact Support</h1>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Have questions or need assistance? Our support team is here to help you with any issues you may encounter.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Contact Form -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h2 class="text-xl font-semibold mb-4">Send us a message</h2>
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <select id="subject" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option>General Inquiry</option>
+                                <option>Technical Support</option>
+                                <option>Billing Question</option>
+                                <option>Feature Request</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="4" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit"
+                                class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4">Support Information</h2>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-sm font-medium text-gray-500">Email Support</h3>
+                                    <p class="text-sm text-gray-700">support@v-maint.com</p>
+                                    <p class="text-xs text-gray-500 mt-1">Typically responds within 24 hours</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center">
+                                    <i class="fas fa-phone-alt text-green-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-sm font-medium text-gray-500">Phone Support</h3>
+                                    <p class="text-sm text-gray-700">(800) 555-0199</p>
+                                    <p class="text-xs text-gray-500 mt-1">Mon-Fri, 9am-5pm EST</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center">
+                                    <i class="fas fa-comment-dots text-purple-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-sm font-medium text-gray-500">Live Chat</h3>
+                                    <p class="text-sm text-gray-700">Available on dashboard</p>
+                                    <p class="text-xs text-gray-500 mt-1">Mon-Fri, 8am-8pm EST</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h2 class="text-xl font-semibold mb-4">Frequently Asked Questions</h2>
+                        <div class="space-y-3">
+                            <div class="border-b pb-3">
+                                <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(1)">
+                                    <span class="font-medium text-gray-700">How do I reset my password?</span>
+                                    <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                                </button>
+                                <div id="faq1" class="hidden mt-2 text-sm text-gray-600">
+                                    You can reset your password by clicking on the "Forgot Password" link on the login page. We'll send you an email with instructions.
+                                </div>
+                            </div>
+                            <div class="border-b pb-3">
+                                <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(2)">
+                                    <span class="font-medium text-gray-700">Where can I find my maintenance history?</span>
+                                    <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                                </button>
+                                <div id="faq2" class="hidden mt-2 text-sm text-gray-600">
+                                    All your maintenance records are available in the "Maintenance History" section of your dashboard.
+                                </div>
+                            </div>
+                            <div class="border-b pb-3">
+                                <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(3)">
+                                    <span class="font-medium text-gray-700">How do I add a new vehicle?</span>
+                                    <i class="fas fa-chevron-down text-gray-400 text-xs"></i>
+                                </button>
+                                <div id="faq3" class="hidden mt-2 text-sm text-gray-600">
+                                    Go to the "Vehicle Registration" page from your dashboard to add a new vehicle to your account.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Simple auth check
+        if (!localStorage.getItem('authToken')) {
+            window.location.href = '/login.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('authToken');
+            window.location.href = '/login.html';
+        }
+
+        function toggleFAQ(id) {
+            const faq = document.getElementById(`faq${id}`);
+            const icon = faq.previousElementSibling.querySelector('i');
+            faq.classList.toggle('hidden');
+            icon.classList.toggle('fa-chevron-down');
+            icon.classList.toggle('fa-chevron-up');
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // In a real app, this would send to a support API
+            console.log('Contact form submitted:', { name, email, subject, message });
+            
+            // Show success message
+            alert('Thank you for your message! Our support team will get back to you soon.');
+            document.getElementById('contactForm').reset();
+        });
+    </script>
+</body>
+</html>
